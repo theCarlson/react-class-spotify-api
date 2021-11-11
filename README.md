@@ -1,4 +1,4 @@
-# Jammming React App 
+# Jammming React App (Codecademy)
 
 This app is a Codecademy project using React class-based components. The purpose is to familiarize the process of passing state from one app to another, sending requests to the Spotify API in order to search the Spotify Library, creating a custom playlist, and then saving it to the user's Spotify account. This project is for learning purposes only. Codecademy holds the rights to the creation of this app. 
 
