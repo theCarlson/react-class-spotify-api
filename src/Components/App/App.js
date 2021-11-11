@@ -31,13 +31,23 @@ class App extends Component {
       playlistName: "Rick Roll's Playlist",
       playlistTracks: [
         {
-          id: 1,
-          name: 'Playlist Name',
-          artist: 'Playlist Artist',
-          album: 'Playlist Album',
+          id: 4,
+          name: 'playlistName',
+          artist: 'playlistArtist',
+          album: 'playlistAlbum',
         },
       ],
     };
+    this.addTrack = this.addTrack.bind(this);
+  }
+
+  addTrack(track) {
+    const tracks = this.state.playlistTracks;
+    if (tracks.find((savedTrack) => savedTrack.id === track.id)) {
+      return;
+    }
+    tracks.push(track);
+    this.setState({ playlistTracks: tracks });
   }
 
   render() {
@@ -49,7 +59,10 @@ class App extends Component {
         <div className='App'>
           <SearchBar />
           <div className='App-playlist'>
-            <SearchResults searchResults={this.state.searchResults} />
+            <SearchResults
+              searchResults={this.state.searchResults}
+              onAdd={this.addTrack}
+            />
             <Playlist
               playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
