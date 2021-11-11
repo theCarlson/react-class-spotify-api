@@ -1,31 +1,40 @@
 import React, { Component } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
-import PlayList from '../Playlist/Playlist';
+import Playlist from '../Playlist/Playlist';
 import './App.css';
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       searchResults: [
         {
           id: 1,
-          name: 'Rick Rolls',
-          artist: 'Rick and Roll',
-          album: 'Rick Rolls Right',
+          name: 'Name 1',
+          artist: 'Artist 1',
+          album: 'Album 1',
         },
         {
           id: 2,
-          name: 'Rick Rolls2',
-          artist: 'Rick and Roll2',
-          album: 'Rick Rolls Right2',
+          name: 'Name 2',
+          artist: 'Artist 2',
+          album: 'Album 2',
         },
         {
           id: 3,
-          name: 'Rick Rolls3',
-          artist: 'Rick and Roll3',
-          album: 'Rick Rolls Right3',
+          name: 'Name 3',
+          artist: 'Artist 3',
+          album: 'Album 3',
+        },
+      ],
+      playlistName: "Rick Roll's Playlist",
+      playlistTracks: [
+        {
+          id: 1,
+          name: 'Playlist Name',
+          artist: 'Playlist Artist',
+          album: 'Playlist Album',
         },
       ],
     };
@@ -41,10 +50,15 @@ export default class App extends Component {
           <SearchBar />
           <div className='App-playlist'>
             <SearchResults searchResults={this.state.searchResults} />
-            <PlayList />
+            <Playlist
+              playlistName={this.state.playlistName}
+              playlistTracks={this.state.playlistTracks}
+            />
           </div>
         </div>
       </div>
     );
   }
 }
+
+export default App;

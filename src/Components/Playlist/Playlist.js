@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
-// import TrackList from '../TrackList';
+import TrackList from '../TrackList/TrackList';
 import './Playlist.css';
 
-export default class Playlist extends Component {
+class Playlist extends Component {
   render() {
     return (
       <div className='Playlist'>
         <input defaultValue={'New Playlist'} />
-        {/* <TrackList /> */}
+        <TrackList
+          name={this.props.playlistName}
+          tracks={this.props.playlistTracks}
+        />
         <button className='Playlist-save'>SAVE TO SPOTIFY</button>
       </div>
     );
   }
 }
+
+export default Playlist;
