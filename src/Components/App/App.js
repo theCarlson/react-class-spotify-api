@@ -2,45 +2,22 @@ import React, { Component } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
+import Spotify from '../../util/Spotify';
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [
-        {
-          id: 1,
-          name: 'Name 1',
-          artist: 'Artist 1',
-          album: 'Album 1',
-        },
-        {
-          id: 2,
-          name: 'Name 2',
-          artist: 'Artist 2',
-          album: 'Album 2',
-        },
-        {
-          id: 3,
-          name: 'Name 3',
-          artist: 'Artist 3',
-          album: 'Album 3',
-        },
-      ],
-      playlistName: "Rick Roll's Playlist",
-      playlistTracks: [
-        {
-          id: 4,
-          name: 'playlistName',
-          artist: 'playlistArtist',
-          album: 'playlistAlbum',
-        },
-      ],
+      searchResults: [],
+      playlistName: 'My Playlist',
+      playlistTracks: [],
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
+    this.savePlaylist = this.savePlaylist.bind(this);
+    this.search = this.search.bind(this);
   }
 
   addTrack(track) {
@@ -62,6 +39,29 @@ class App extends Component {
     this.setState({ playlistName: name });
   }
 
+  savePlaylist() {
+    const trackURIs = this.state.playlistTracks.map((track) => track.uri);
+    Spotify.savePlaylist(this.state.playlistName, trackURIs).then(() => {
+      this.setState({
+        playlistName: 'New Playlist',
+        playlistTracks: [],
+      });
+    });
+  }
+
+  search(term) {
+    Spotify.search(term).then((searchResults) => {
+      console.log(searchResults);
+      this.setState({ searchResults: searchResults });
+    });
+  }
+
+  componentDidMount() {
+    window.addEventListener('load', () => {
+      Spotify.getAccessToken();
+    });
+  }
+
   render() {
     return (
       <div>
@@ -69,7 +69,7 @@ class App extends Component {
           Ja<span className='highlight'>mmm</span>ing
         </h1>
         <div className='App'>
-          <SearchBar />
+          <SearchBar onSearch={this.search} />
           <div className='App-playlist'>
             <SearchResults
               searchResults={this.state.searchResults}
@@ -80,6 +80,7 @@ class App extends Component {
               playlistTracks={this.state.playlistTracks}
               onRemove={this.removeTrack}
               onNameChange={this.updatePlaylistName}
+              onSave={this.savePlaylist}
             />
           </div>
         </div>
