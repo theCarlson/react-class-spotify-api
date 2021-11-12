@@ -7,7 +7,7 @@ This app is a Codecademy project using React class-based components. The purpose
 * Dashboard
 * Create App: Create a name
 * Redirect URIs: http://localhost:3000/
-* Obtain Client ID from Dashboard
+* Obtain Client ID from Dashboard (may need to go to ***Edit Settings)
 * Enter Client ID. Go to Spotify.js, then in the variable clientID input your ID where it says  **'ENTER CLIENT_ID HERE'**.
 
 ## Available Scripts
