@@ -22,5 +22,5 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-******Upon running this app you may see INVALID CLIENT ID displayed in the browser. If this happens type in http://localhost:3000/ to be redirected to the app.***
+******Upon running this app you may see INVALID CLIENT ID displayed in the browser. If this happens type in http://localhost:3000/ to be redirected to the app. I am still working on fixing this.***
 
